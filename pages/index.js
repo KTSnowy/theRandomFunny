@@ -14,6 +14,12 @@ export default function TheRandomFunny() {
     .catch(err => console.log(err))
   }
 
+  const getMoreFacts = () => {
+    axios.get('https://uselessfacts.jsph.pl/random.json?language=en')
+    .then(res => setJoke(res.data.text))
+    .catch(err => console.log(err))
+  }
+
   useEffect(() => {
     axios.get('https://v2.jokeapi.dev/joke/Programming?blacklistFlags=nsfw,explicit&format=txt')
     .then(res => setJoke(res.data))
@@ -42,18 +48,16 @@ export default function TheRandomFunny() {
             <h2>New Joke &rarr;</h2>
           </button>
 
-          <button className={styles.card}>
+          <button onClick={getMoreFacts} className={styles.card}>
             <h2>Fun Fact &rarr;</h2>
           </button>
         </div>
       </main>
 
       <footer className={styles.footer}>
-        <a
-          href="https://www.ktsnowy.com"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <a href="https://www.ktsnowy.com"
+           target="_blank"
+           rel="noopener noreferrer">
           Made by Gabriel Gonçalves
         </a>
       </footer>
